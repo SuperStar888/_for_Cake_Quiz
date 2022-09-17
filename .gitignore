@@ -1,0 +1,7 @@
+.DS_Store
+
+uploads
+
+app/webroot/upload
+app/tmp/*
+vendors
