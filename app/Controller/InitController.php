@@ -28,6 +28,7 @@ App::uses('Folder', 'Utility');
 						$cmd = '/Applications/MAMP/Library/bin/' . $cmd;
 					}
 					$output = null;
+
 					exec($cmd, $output);
 					if (empty($output)) {
 						$success = true;

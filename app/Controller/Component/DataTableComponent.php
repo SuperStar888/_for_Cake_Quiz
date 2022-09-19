@@ -85,7 +85,7 @@ class DataTableComponent extends Component{
         if(isset($this->controller->request->query)){
             $httpGet = $this->controller->request->query;
         }
-        
+         
         // check for ORDER BY in GET request
         if(isset($httpGet) && isset($httpGet['iSortCol_0']) && $httpGet['sEcho'] != 1){
             $orderBy = $this->getOrderByStatements();

@@ -1,6 +1,11 @@
 
 <div id="message1">
 
+<!--
+
+Solution 2: I used the tooltip to change pop up message to mouse hover.
+
+-->
 
 <?php echo $this->Form->create('Type',array('id'=>'form_type','type'=>'file','class'=>'','method'=>'POST','autocomplete'=>'off','inputDefaults'=>array(
 				
@@ -9,16 +14,37 @@
 <?php echo __("Hi, please choose a type below:")?>
 <br><br>
 
-<?php $options_new = array(
- 		'Type1' => __('<span class="showDialog" data-id="dialog_1" style="color:blue">Type1</span><div id="dialog_1" class="hide dialog" title="Type 1">
- 				<span style="display:inline-block"><ul><li>Description .......</li>
- 				<li>Description 2</li></ul></span>
- 				</div>'),
-		'Type2' => __('<span class="showDialog" data-id="dialog_2" style="color:blue">Type2</span><div id="dialog_2" class="hide dialog" title="Type 2">
- 				<span style="display:inline-block"><ul><li>Desc 1 .....</li>
- 				<li>Desc 2...</li></ul></span>
- 				</div>')
-		);?>
+<?php 
+	$type1_tip = '<ul>
+		<li>Description .......</li>
+		<li>Description 2</li>
+	</ul>';
+	$type2_tip = '<ul>
+		<li>Desc 1 .....</li>
+		<li>Desc 2...</li>
+	</ul>';
+
+
+	$options_new = array(
+		'Type1' => __('<span class="showDialog" data-id="dialog_1" style="color:blue" data-toggle="tooltip" data-placement="right" data-html="true" title="' . $type1_tip . '">Type1</span>'
+		),
+		
+		'Type2' => __('<span class="showDialog" data-id="dialog_2" style="color:blue" data-toggle="tooltip" data-placement="right" data-html="true" title="' . $type2_tip . '">Type2</span>'
+		),
+	);
+
+// $options_new = array(
+//  		'Type1' => __('<span class="showDialog" data-id="dialog_1" style="color:blue">Type1</span><div id="dialog_1" class="hide dialog" title="Type 1">
+//  				<span style="display:inline-block"><ul><li>Description .......</li>
+//  				<li>Description 2</li></ul></span>
+//  				</div>'),
+// 		'Type2' => __('<span class="showDialog" data-id="dialog_2" style="color:blue">Type2</span><div id="dialog_2" class="hide dialog" title="Type 2">
+//  				<span style="display:inline-block"><ul><li>Desc 1 .....</li>
+//  				<li>Desc 2...</li></ul></span>
+//  				</div>')
+// 		);
+		
+		?>
 
 <?php echo $this->Form->input('type', array('legend'=>false, 'type' => 'radio', 'options'=>$options_new,'before'=>'<label class="radio line notcheck">','after'=>'</label>' ,'separator'=>'</label><label class="radio line notcheck">'));?>
 
@@ -51,6 +77,9 @@
 <script>
 
 $(document).ready(function(){
+
+	$('[data-toggle="tooltip"]').tooltip();
+
 	$(".dialog").dialog({
 		autoOpen: false,
 		width: '500px',
@@ -59,7 +88,7 @@ $(document).ready(function(){
 	});
 
 	
-	$(".showDialog").click(function(){ var id = $(this).data('id'); $("#"+id).dialog('open'); });
+	// $(".showDialog").click(function(){ var id = $(this).data('id'); $("#"+id).dialog('open'); });
 
 })
 
